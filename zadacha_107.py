@@ -70,8 +70,7 @@ def check_line(sum_O, sum_X):
 # Искусственный интеллект: выбор хода
 def AI(side_0):
     # сжалится компьютер или нет зависит от удачи
-    
-    luck = randint(0, 4)
+    luck = randint(0, 6)
     step = ""
     if side_0 == 1:
         step = check_line(0, 2)
@@ -87,37 +86,35 @@ def AI(side_0):
                 step = 5
         # если центр занят, то занимаем ячейку
         if step == "":
-            if pole[0] != "X" and pole[0] != "O":
-                step = 1
-        if step == "":
-            if pole[2] != "X" and pole[2] != "O":
-                step = 3
+            for i in range(10):
+                if pole[i] != "X" and pole[i] != "O":
+                    step = i+1
+                    break
     else:
         step = check_line(2, 0)
         # если на какой либо из победных линий 2 чужие фигуры и 0 своих - ставим
-        if step == "" and luck == 1:
+        if step == "" and luck != 1:
             step = check_line(0, 2)
         # если 1 фигура своя и 0 чужих - ставим
         if step == "":
             step = check_line(1, 0)
         # центр пуст, то занимаем центр
         if step == "":
-            if pole[4] != "X" and pole[4] != "O" and luck == 1:
+            if pole[4] != "X" and pole[4] != "O"  and luck == 1:
                 step = 5
         # если центр занят, то занимаем ячейку
         if step == "":
-            if pole[0] != "X" and pole[0] != "O":
-                step = 1
-        if step == "":
-            if pole[2] != "X" and pole[2] != "O":
-                step = 3
-        
+            for i in range(9):
+                if pole[i] != "X" and pole[i] != "O":
+                    step = i+1
+                    break
+
     return step
 
 
 # Основная программа
 game_over = False
-side = input(f"За кого играете??\n").lower()
+side = input(f"За кого играете введите х или 0??\n").lower()
 if side == 0 or side == '0' or side == 'o' or side == 'о':
     side_0 = 1
     human = False
@@ -164,3 +161,4 @@ while game_over == False:
 # Игра окончена. Покажем карту. Объявим победителя.
 print_pole()
 print("Победил", win)
+
