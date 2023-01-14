@@ -70,19 +70,19 @@ def check_line(sum_O, sum_X):
 # Искусственный интеллект: выбор хода
 def AI(side_0):
     # сжалится компьютер или нет зависит от удачи
-    luck = randint(0, 6)
+    luck = randint(0, 2)
     step = ""
     if side_0 == 1:
         step = check_line(0, 2)
         # если на какой либо из победных линий 2 чужие фигуры и 0 своих - ставим
-        if step == "" and luck == 1:
+        if step == "" and luck != 1:
             step = check_line(2, 0)
         # если 1 фигура своя и 0 чужих - ставим
         if step == "":
             step = check_line(0, 1)
         # центр пуст, то занимаем центр
         if step == "":
-            if pole[4] != "X" and pole[4] != "O" and luck == 1:
+            if pole[4] != "X" and pole[4] != "O" and luck != 1:
                 step = 5
         # если центр занят, то занимаем ячейку
         if step == "":
@@ -100,7 +100,7 @@ def AI(side_0):
             step = check_line(1, 0)
         # центр пуст, то занимаем центр
         if step == "":
-            if pole[4] != "X" and pole[4] != "O"  and luck == 1:
+            if pole[4] != "X" and pole[4] != "O"  and luck != 1:
                 step = 5
         # если центр занят, то занимаем ячейку
         if step == "":
